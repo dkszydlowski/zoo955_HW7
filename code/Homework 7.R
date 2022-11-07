@@ -2,6 +2,7 @@
 
 library(spatstat)
 
+## Generate Date ##==========================================
 #define variables
 #variables that control the size and strength of clusters
 val.at.center=1
@@ -18,8 +19,6 @@ Ymax=50
 #define the center locations and set up the distance vector
 centers=matrix(data=c(-25,-25,25,25,-25,25,-25,25),nrow=4,ncol=2)
 dist=matrix(nrow=4,ncol=1)
-
-centers=matrix(data=c(0,0,0,0,0,0,0,0),nrow=4,ncol=2)
 
 # can also change centers to influence the ripley's K plot
 
@@ -75,12 +74,14 @@ points(centers,type="p", col="red", pch=21, bg="red")
 #create a point pattern object for analysis using the spatstat library
 output_ppp = ppp(output.X, output.Y, c(Xmin,Xmax), c(Ymin,Ymax))
 
-##### Question 1.3 ##### Randomly generate data
+##### Question 1.3 ##### Randomly generate data #=============================
 
 output.X.rand = runif(100, Xmin, Xmax)
 output.Y.rand = runif(100, Ymin, Ymax)
 
 plot(output.X.rand,output.Y.rand)
+
+##### Question 2 ##### #==========================================
 
 # create a ppp object for the random data
 
@@ -89,6 +90,7 @@ pppRand  = ppp(output.X.rand, output.Y.rand, c(Xmin,Xmax), c(Ymin,Ymax))
 quadrat.test(output_ppp)
 quadrat.test(pppRand)
 
+# Question 3 #### #========================================
 # calculate and plot Ripley's K
 
 
@@ -97,9 +99,7 @@ randEnv = envelope(pppRand)
 plot(Kest(output_ppp))
 plot(Kest(pppRand))
 
-
-
-
+# Question 4 ####=============================================
 
 #### Running with center at 0, 0
 
@@ -164,24 +164,7 @@ points(centers,type="p", col="red", pch=21, bg="red")
 #create a point pattern object for analysis using the spatstat library
 output_pppCenter = ppp(output.X, output.Y, c(Xmin,Xmax), c(Ymin,Ymax))
 
-##### Question 1.3 ##### Randomly generate data
-
-output.X.rand = runif(100, Xmin, Xmax)
-output.Y.rand = runif(100, Ymin, Ymax)
-
-plot(output.X.rand,output.Y.rand)
-
-# create a ppp object for the random data
-
-pppRand  = ppp(output.X.rand, output.Y.rand, c(Xmin,Xmax), c(Ymin,Ymax))
-
-quadrat.test(output_ppp)
-quadrat.test(pppRand)
-
 # calculate and plot Ripley's K
-
-
-randEnv = envelope(pppRand)
-
 plot(Kest(output_pppCenter))
-plot(Kest(pppRand))
+
+
